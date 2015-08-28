@@ -34,7 +34,7 @@
 				<a class="navbar-brand" style="background-color: #e3f2fd" href="viewPosts?method=post">View Your Posts</a>
 				
 					<a class="navbar-brand" style="background-color: #e3f2fd" href="profile?method=get">Write Posts</a>	
-				<a class="navbar-brand" style="background-color: #e3f2fd" href="profile?method=post">Profile</a>
+				<a class="navbar-brand" style="background-color: #e3f2fd" href="profile?method=post&Username=">Profile</a>
 				
 				<a class="navbar-brand" style="background-color: #e3f2fd" href="Register?method=post">Logout</a>
 			</div>

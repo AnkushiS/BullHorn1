@@ -106,11 +106,12 @@ public class BullCall extends HttpServlet {
 		line += "<tr>" + "<th>" + "user_text" + "</th> <br>" + "<th>"
 				+ "user_name" + "</th> <br>" + "</tr>";
 
-		String sql = "select m from Microblog m ";
+		
 		List<Microblog> all_blogs = DBtrans.selectBlog();
 		for (int i = 0; i < all_blogs.size(); i++) {
-			line += "<tr>" + "<td>" + all_blogs.get(i).getUserText() + "</td>"
-					+ "<td>" + all_blogs.get(i).getUserName() + "</td>"
+			line += "<tr>" + 
+					"<td>" + all_blogs.get(i).getUserText() + "</td>"
+					+ "<td><a href='profile?method=post&Username=" +all_blogs.get(i).getUserName() +"\'" +">" + all_blogs.get(i).getUserName() + "</a></td>"
 					+ "</tr>";
 		}
 

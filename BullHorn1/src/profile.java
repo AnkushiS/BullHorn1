@@ -15,9 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Microblog;
 import model.User;
 
-/**
- * Servlet implementation class profile
- */
+
 @WebServlet("/profile")
 public class profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +34,9 @@ public class profile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String method = request.getParameter("method");
+	 
 		if(method.equals("post")){
+			
 			doPost(request, response);
 		}else{
 		String line = "<h3> Hello!!   " + session.getAttribute("username")+"</h3>";
@@ -57,8 +57,16 @@ public class profile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
+		String usrname = "";
+		System.out.println("%%%%%%" + request.getParameter("Username") + "^^^^^^^");
+		if(request.getParameter("Username").equals(" ")){
+			usrname = session.getAttribute("username").toString();
+			
+		}else{
+			usrname = request.getParameter("Username");
+		}
+		System.out.println("$$$$$$$$      " + usrname);
 		 String line = "<table class=" 
 				 	+ "\"table bs-example\"" 
 				 	+ "style=width:60%"
@@ -68,8 +76,9 @@ public class profile extends HttpServlet {
 	        List<User> Usr_profile = DBtrans.selectUsr();
 	        ArrayList<String> usr_profile = new ArrayList<String>();
 	        SimpleDateFormat dateform = new SimpleDateFormat("MM/dd/YYYY");
+	        
 	        for(int i=0; i<Usr_profile.size(); i++){
-	        	if (Usr_profile.get(i).getUserName().equals(session.getAttribute("username"))){
+	        	if (Usr_profile.get(i).getUserName().equals(usrname)){
 	        		line +=  "<tr>"
 		        			+"<td><strong>" + "Username: " +Usr_profile.get(i).getUserName()+ "</strong></td></tr>"
 		        			+"<tr><td><strong>" + "Motto:    " + Usr_profile.get(i).getUserMotto()+ "</strong></td></tr>"
