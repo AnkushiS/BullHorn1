@@ -59,13 +59,13 @@ public class profile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String usrname = "";
-		System.out.println("%%%%%%" + request.getParameter("Username") + "^^^^^^^");
-		if(request.getParameter("Username").equals(" ")){
-			usrname = session.getAttribute("username").toString();
-			
-		}else{
-			usrname = request.getParameter("Username");
-		}
+		
+//		if(request.getParameter("Username"){
+//			usrname = session.getAttribute("username").toString();
+//			
+//		}else{
+//			usrname = request.getParameter("Username");
+//		}
 		System.out.println("$$$$$$$$      " + usrname);
 		 String line = "<table class=" 
 				 	+ "\"table bs-example\"" 
