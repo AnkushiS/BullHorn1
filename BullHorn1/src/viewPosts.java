@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class viewPosts
@@ -28,39 +29,31 @@ public class viewPosts extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String method = request.getParameter("method");
+		if(method.equals("post")){
+			doPost(request, response);
+		}else{
 		model.Microblog user = new model.Microblog();
-		String line = "<table class=" 
-        		+ "\"table table-striped\"" 
-        		+ "style=width:60%>";
-		// get the list of values to display
-	    
-        
-        line += 
- 			"<tr>" 
- 			+"<th>" + "user_text" + "</th> <br>"
- 			+ "</tr>"
- 			;
-		
-        for(int i=0; i<DBtrans.selectBlog().size(); i++){
-        	line += "<tr>" 
-        			+"<td>" + DBtrans.selectBlog().get(i).getUserText()+ "</td>"
-        			+"</tr>"
-        	        ;
-        	}
-        
-        	line += "</table>";
+		// get posts
+		String line = BullCall.getAllBlogs();			
 		request.setAttribute("message", line);
-		getServletContext().getRequestDispatcher("/Display.jsp").forward(request, response);
-	
-	
+		getServletContext().getRequestDispatcher("/AllPost.jsp").forward(request, response);
+		}
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
+		
+		model.Microblog user = new model.Microblog();
+		System.out.println("in post of viewPosts");
+		System.out.println(session.getAttribute("username").toString());
+		String line = BullCall.getUsrBlogs(session.getAttribute("username").toString());
+		request.setAttribute("message", line);
+		getServletContext().getRequestDispatcher("/Display.jsp").forward(request, response);
+		
+		
 	}
 
 }

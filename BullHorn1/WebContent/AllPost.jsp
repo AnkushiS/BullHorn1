@@ -30,17 +30,13 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" style="background-color: #e3f2fd" href="Login.html">BullPost</a>
 				<a class="navbar-brand" style="background-color: #e3f2fd" href="viewPosts?method=get">View All Posts</a>
+				</div>
+				</div>
+				</nav>
+				<div>
 				
-				<a class="navbar-brand" style="background-color: #e3f2fd" href="viewPosts?method=post">View Your Posts</a>
-				
-					<a class="navbar-brand" style="background-color: #e3f2fd" href="profile?method=get">Write Posts</a>	
-				<a class="navbar-brand" style="background-color: #e3f2fd" href="profile?method=post">Profile</a>
-				
-				<a class="navbar-brand" style="background-color: #e3f2fd" href="Register?method=post">Logout</a>
-			</div>
-		</div>
-		
-	</nav>
-${message}
+				${message}
+				</div>
+
 </body>
 </html>

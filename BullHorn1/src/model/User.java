@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -9,7 +10,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="USERS" , schema="TESTDB")
+@Table(name="USERS", schema="testdb")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +19,13 @@ public class User implements Serializable {
 	@Column(name="USER_ID")
 	private long userId;
 
+	@Temporal(TemporalType.DATE)
+	private Date joindate;
+
 	private String password;
+
+	@Column(name="USER_MOTTO")
+	private String userMotto;
 
 	@Column(name="USER_NAME")
 	private String userName;
@@ -34,12 +41,28 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 
+	public Date getJoindate() {
+		return this.joindate;
+	}
+
+	public void setJoindate(Date joindate) {
+		this.joindate = joindate;
+	}
+
 	public String getPassword() {
 		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUserMotto() {
+		return this.userMotto;
+	}
+
+	public void setUserMotto(String userMotto) {
+		this.userMotto = userMotto;
 	}
 
 	public String getUserName() {

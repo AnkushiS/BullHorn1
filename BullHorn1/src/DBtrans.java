@@ -41,13 +41,13 @@ public class DBtrans {
 		}
 	}
 	
+
 	
 	public static List<Microblog> selectBlog(){
 		
 		EntityManager em = DBUtils.getEmFactory().createEntityManager();
 		
-		String sql = "select m from Microblog m ";
-		
+		String sql = "select m from Microblog m";
 		TypedQuery<Microblog> mq = em.createQuery(sql, Microblog.class);
 		
 		List<Microblog> blogs;
@@ -64,22 +64,42 @@ public class DBtrans {
 		}
 
 
+public static List<User> selectUsr(){
+		
+		EntityManager em = DBUtils.getEmFactory().createEntityManager();
+		
+		String sql = "select u from User u";
+		TypedQuery<User> mq = em.createQuery(sql, User.class);
+		
+		List<User> blogs;
+		
+		try{
+			blogs = mq.getResultList();
+			if(blogs==null || blogs.isEmpty()){
+				blogs=null;
+			}
+		}finally {
+			em.close();
+		}
+		return blogs;
+		}
+
+	
+	
 	public static boolean checkLogin(String userName, String password) {
 		boolean valid = false;
 		EntityManager em = DBUtils.getEmFactory().createEntityManager();
-		String sql = "select u from User u where u.userName= :userName and u.password= :password";		
+		String sql = "select u from User u where u.userName= :userName";		
 		TypedQuery<User> mq = em.createQuery(sql, User.class);
 		mq.setParameter("userName", userName);
-		mq.setParameter("password", password);
-				
+			
 		try{
-			System.out.println(mq.getSingleResult().getPassword());
-			System.out.println(mq.getSingleResult().getUserName() + "      " + mq.getSingleResult().getPassword());
 			if(mq.getSingleResult().getUserName().equals(userName)){
-				if(mq.getSingleResult().getPassword().equals(password)){
-					System.out.println(mq.getSingleResult().getUserName() + "      " + mq.getSingleResult().getPassword());
+				
+				//if(mq.getSingleResult().getPassword().equals(password)){
+					//System.out.println(mq.getSingleResult().getUserName() + "      " + mq.getSingleResult().getPassword());
 					valid=true;	
-				}
+			//	}
 			}
 			
 		}catch(Exception e){
@@ -90,11 +110,27 @@ public class DBtrans {
 		return valid;
 	}
 	
-	
-
-	
-	
-	
+//	public static List<Microblog> selectUsrBlog(String userName){
+//		
+//		EntityManager em = DBUtils.getEmFactory().createEntityManager();
+//		
+//		String sql = "select m from Microblog m where m.userName= :userName";
+//		TypedQuery<Microblog> mq = em.createQuery(sql, Microblog.class);
+//		
+//		mq.setParameter("userName", userName);
+//		
+//		List<Microblog> blogs;
+//		
+//		try{
+//			blogs = mq.getResultList();
+//			if(blogs==null || blogs.isEmpty()){
+//				blogs=null;
+//			}	
+//		}finally {
+//			em.close();
+//		}
+//		return blogs;
+//		}
 	
 	
 /*
