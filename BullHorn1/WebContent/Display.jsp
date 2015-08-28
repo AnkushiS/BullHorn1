@@ -25,6 +25,14 @@
 </style>
 </head>
 <body>
+<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">BullPost</a>
+			</div>
+		</div>
+	</nav>
+
 ${message}
 </body>
 </html>

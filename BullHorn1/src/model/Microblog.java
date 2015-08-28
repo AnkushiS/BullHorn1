@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import java.util.Date;
 
 
 /**
@@ -9,14 +12,20 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="Microblog", schema="TESTDB")
+@Table(name="Microblog" , schema="TESTDB")
 @NamedQuery(name="Microblog.findAll", query="SELECT m FROM Microblog m")
 public class Microblog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="USER_ID")
-	private long userId;
+	@Column(name="BLOG_ID")
+	private long blogId;
+
+	@Temporal(TemporalType.DATE)
+	private Date datein;
+
+	@Column(name="USER_NAME")
+	private String userName;
 
 	@Column(name="USER_TEXT")
 	private String userText;
@@ -24,12 +33,28 @@ public class Microblog implements Serializable {
 	public Microblog() {
 	}
 
-	public long getUserId() {
-		return this.userId;
+	public long getBlogId() {
+		return this.blogId;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setBlogId(long blogId) {
+		this.blogId = blogId;
+	}
+
+	public Date getDatein() {
+		return this.datein;
+	}
+
+	public void setDatein(Date datein) {
+		this.datein = datein;
+	}
+
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getUserText() {
